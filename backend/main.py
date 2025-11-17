@@ -45,5 +45,17 @@ async def save_entry(input_text: str = Body(...)):
 
 @app.get("/insights")
 async def get_insights():
-    return {"message": "Get insights endpoint"}
+    try:
+        if ENTRIES_FILE.exists():
+            with open(ENTRIES_FILE, 'r') as f:
+                entries = json.load(f)
+                filtered_entries = filter(entry_in_month, entries)
+                return {"message": "Entries retrieved successfully", "entries": list(filtered_entries)}
+        else:
+            return {"message": "No entries found"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving entries: {str(e)}")
 
+def entry_in_month(entry):
+    entry_date = date.fromisoformat(entry["date"])
+    return entry_date.month == date.today().month and entry_date.year == date.today().year
