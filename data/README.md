@@ -1,1 +1,1 @@
-Placeholder for folder. This folder will house saved data.
+This folder will house local data saved via the save_entry endpoint. 
