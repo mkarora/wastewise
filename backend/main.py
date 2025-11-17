@@ -56,6 +56,6 @@ async def get_insights():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving entries: {str(e)}")
 
-def entry_in_month(entry):
+def __entry_in_month(entry):
     entry_date = date.fromisoformat(entry["date"])
     return entry_date.month == date.today().month and entry_date.year == date.today().year
