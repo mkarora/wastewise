@@ -10,7 +10,6 @@ class Entry(BaseModel):
     date: date
     description: str
 
-# Ensure data directory exists
 DATA_DIR = Path(__file__).parent.parent / "data"
 DATA_DIR.mkdir(exist_ok=True)
 ENTRIES_FILE = DATA_DIR / "entries.json"
