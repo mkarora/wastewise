@@ -29,6 +29,18 @@ API documentation will be available at:
 - Swagger UI: `http://localhost:8000/docs`
 - ReDoc: `http://localhost:8000/redoc`
 
+## Running Tests
+
+Make sure you're in the `backend` directory, then run:
+```bash
+pytest test_main.py -v
+```
+
+Or to run with coverage:
+```bash
+pytest test_main.py -v --cov=main
+```
+
 ## Endpoints
 
 - `GET /` - Hello World
