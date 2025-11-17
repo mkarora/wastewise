@@ -48,8 +48,10 @@ async def get_insights():
         if ENTRIES_FILE.exists():
             with open(ENTRIES_FILE, 'r') as f:
                 entries = json.load(f)
-                filtered_entries = filter(entry_in_month, entries)
-                return {"message": "Entries retrieved successfully", "entries": list(filtered_entries)}
+                filtered_entries = list(filter(__entry_in_month, entries))
+                if len(filtered_entries) == 0:
+                    return {"message": "No entries found in current month"}
+                return {"message": "Entries retrieved successfully", "entries": filtered_entries}
         else:
             return {"message": "No entries found"}
     except Exception as e:
