@@ -1,0 +1,5 @@
+{
+    "system": "You are analyzing someone's food waste over a month.",
+    "user_intro": "The following data are logs that the person has entered over the last month about their food buying and discarding.",
+    "user_follow_up": "Analyze the data for trends and provide recommendations to the person. In the analysis, include the top three most frequently wasted items, friendly recommendations for next month, and any noticeable trends this month. Here is the structure the output should be in: 'Items wasted: spinach, onions, and quinoa. Recommendations: 'Onions can be chopped and frozen to use as a mirepoix in future. Try using spinach in smoothies or freezing it for future use in soups or smoothies. Trends: You wasted less carrots this month, nice job! You traveled for a lot of this month contributing to some food going bad.'"
+}
