@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from datetime import date
 import json
 from pathlib import Path
+import ollama
 
 app = FastAPI()
 
@@ -51,7 +52,14 @@ async def get_insights():
                 filtered_entries = list(filter(__entry_in_month, entries))
                 if len(filtered_entries) == 0:
                     return {"message": "No entries found in current month"}
-                return {"message": "Entries retrieved successfully", "entries": filtered_entries}
+                response = ollama.chat(model='gemma3', messages=[
+                    {
+                        'role': 'user',
+                        'content': 'Please say hello',
+                    },
+                ])
+                print(response.message.content)
+                return {"message": "Got ollama response", "response": response.message.content}
         else:
             return {"message": "No entries found"}
     except Exception as e:
