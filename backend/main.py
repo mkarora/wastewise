@@ -14,6 +14,7 @@ class Entry(BaseModel):
 DATA_DIR = Path(__file__).parent.parent / "data"
 DATA_DIR.mkdir(exist_ok=True)
 ENTRIES_FILE = DATA_DIR / "entries.json"
+PROMPTS_FILE= "prompts/generate_insights_prompt.json"
 
 @app.get("/")
 async def root():
@@ -48,18 +49,24 @@ async def get_insights():
     try:
         if ENTRIES_FILE.exists():
             with open(ENTRIES_FILE, 'r') as f:
+                print("file open")
                 entries = json.load(f)
+                print("got entries")
                 filtered_entries = list(filter(__entry_in_month, entries))
+                print("filtered entries")
                 if len(filtered_entries) == 0:
                     return {"message": "No entries found in current month"}
-                response = ollama.chat(model='gemma3', messages=[
-                    {
-                        'role': 'user',
-                        'content': 'Please say hello',
-                    },
-                ])
-                print(response.message.content)
-                return {"message": "Got ollama response", "response": response.message.content}
+                with open(PROMPTS_FILE, 'r') as pf:
+                    prompts = json.load(pf)
+                    print("before ollama")
+                    response = ollama.chat(model='gemma3', messages= [
+                        {"role": "system", "content": prompts["system"]},
+                        {"role": "user", "content": prompts["user_intro"]},
+                        {"role": "user", "content": json.dumps(filtered_entries, indent=2)},
+                        {"role": "user", "content": prompts["user_follow_up"]},
+                    ])
+                    print(response.message.content)
+                    return {"message": "Got ollama response", "response": response.message.content}
         else:
             return {"message": "No entries found"}
     except Exception as e:
