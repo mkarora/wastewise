@@ -1,0 +1,19 @@
+<div class="save-entry-container">
+    <h1>Save New Entry</h1>
+    <form class="entry-form">
+    <div class="form-group">
+        <label for="entry-text">Entry:</label>
+        <textarea 
+        id="entry-text" 
+        name="entry-text" 
+        [(ngModel)]="entryText"
+        rows="5"
+        placeholder="Enter your entry here..."
+        class="entry-textbox">
+        </textarea>
+    </div>
+    <button type="submit" class="submit-button" (click)="onSubmit($event)">
+        Submit
+    </button>
+    </form>
+</div>
