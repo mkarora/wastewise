@@ -44,5 +44,5 @@ pytest test_main.py -v --cov=main
 ## Endpoints
 
 - `GET /` - Hello World
-- `POST /entries` - Save entry endpoint 
-- `GET /insights` - Get insights endpoint
+- `POST /entries` - Saves an entry. Takes in a string and persists it to an entries.json file in the data folder along with the date.
+- `GET /insights` - Passes last month's entries to Ollama and returns insights about the month's food waste.
