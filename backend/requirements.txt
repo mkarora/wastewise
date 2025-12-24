@@ -3,4 +3,5 @@ uvicorn[standard]==0.38.0
 pytest==9.0.1
 httpx==0.28.1
 pytest-cov==7.0.0
+ollama==0.6.1
 
