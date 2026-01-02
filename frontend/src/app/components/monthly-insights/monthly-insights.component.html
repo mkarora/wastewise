@@ -1,4 +1,25 @@
 <div class="insights-container">
     <h1>Monthly Insights</h1>
-    <p class="insights-text">Here are your insights</p>
+    
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading-container">
+        <div class="spinner"></div>
+        <p class="loading-text">Loading your insights...</p>
+    </div>
+    
+    <!-- Error Message -->
+    <div *ngIf="!isLoading && error" class="error-container">
+        <p class="error-text">{{ error }}</p>
+        <button class="retry-button" (click)="loadInsights()">Retry</button>
+    </div>
+    
+    <!-- Insights Content -->
+    <div *ngIf="!isLoading && !error && insights" class="insights-content">
+        <div class="insights-text">{{ insights }}</div>
+    </div>
+    
+    <!-- No Insights Message -->
+    <div *ngIf="!isLoading && !error && !insights" class="no-insights">
+        <p class="insights-text">No insights available at this time.</p>
+    </div>
 </div>
