@@ -1,0 +1,20 @@
+<div class="app-container">
+  <nav class="navbar">
+    <div class="nav-links">
+      <a routerLink="/save-entry" 
+         routerLinkActive="active" 
+         [routerLinkActiveOptions]="{exact: true}"
+         class="nav-link">
+        Save Entry
+      </a>
+      <a routerLink="/monthly-insights" 
+         routerLinkActive="active"
+         class="nav-link">
+        Monthly Insights
+      </a>
+    </div>
+  </nav>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

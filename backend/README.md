@@ -4,13 +4,18 @@ Simple FastAPI backend for the WasteWise application.
 
 ## Setup
 
-1. Create a virtual environment:
+1. Install ollama on your machine: https://ollama.com/download. Launch the app. Then in a terminal run: 
+``` bash
+ollama pull gemma3
+```
+
+2. Create a virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 Make sure you're in the `backend` directory, then run:
 ```bash
 pip install -r requirements.txt
