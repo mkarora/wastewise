@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { WastewiseApiService } from '../../services/wastewise-api/wastewise-api.service';
 
 @Component({
   selector: 'save-entry',
@@ -12,9 +13,21 @@ import { FormsModule } from '@angular/forms';
 export class SaveEntryComponent {
   entryText: string = '';
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-    // No functionality yet as requested
+  constructor(private api: WastewiseApiService) {}
+
+  onSubmit() {
+    if (!this.entryText){
+      //validation
+    }
+
+    this.api.saveEntry(this.entryText.trim()).subscribe({
+      next: () => {
+        this.entryText = '';
+      },
+      error: (err) => {
+        console.error('Failed to save entry', err);
+      }
+    });
   }
 }
 
